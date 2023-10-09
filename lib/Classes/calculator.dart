@@ -1,8 +1,10 @@
 import 'dart:math';
 
 class Calculator {
+  Calculator._();
+
   static double imcCalc(double weight, double height) {
-    if(weight <= 0 || height <= 0) {
+    if (weight <= 0 || height <= 0) {
       return -1;
     } else {
       try {
