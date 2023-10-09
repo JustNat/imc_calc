@@ -1,11 +1,15 @@
 import 'dart:math';
 
 class Calculator {
-  double _imc = 0;
-
-double imcCalc(double weight, double height) {
-  _imc = weight / pow(height, 2);
-  return _imc;
-}
-
+  static double imcCalc(double weight, double height) {
+    if(weight <= 0 || height <= 0) {
+      return -1;
+    } else {
+      try {
+        return weight / pow(height, 2);
+      } catch (e) {
+        return -1;
+      }
+    }
+  }
 }
