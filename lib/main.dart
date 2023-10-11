@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:imc_calc/Classes/calculator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,19 +12,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'IMC Calculator',
+      title: 'IMCalc',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        textTheme: GoogleFonts.robotoTextTheme()
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // TODO : saber onde exatamente se obterá height and weight
   double result = 0;
+  double height = 0;
+  double weight = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +57,11 @@ class HomePage extends StatelessWidget {
                 labelText: 'Altura')
               ),
             TextButton(
-              onPressed: () {}, 
+              onPressed: () {
+                setState(() {
+                  result = Calculator.imcCalc(weight, height);
+                });
+              },
               child: const Text("Calcular")
               ),
             Text('$result')
