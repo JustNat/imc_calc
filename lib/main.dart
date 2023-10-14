@@ -39,35 +39,85 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text("IMCalc"),
-            const TextField(
-              keyboardType: TextInputType.number, 
-              textAlign: TextAlign.justify, 
-              decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Peso')
+      body: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("IMC", style: TextStyle(fontSize: 64, fontWeight: FontWeight.w600)),
+                  Text("alc", 
+                    style: TextStyle(
+                    fontSize: 64, 
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 1.3
+                      ..color = Colors.black,
+                      ),
+                    )
+                ],
               ),
-            const TextField(
-              keyboardType: TextInputType.number, 
-              textAlign: TextAlign.justify, 
-              decoration: InputDecoration(
-                border: OutlineInputBorder(), 
-                labelText: 'Altura')
-              ),
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  result = Calculator.imcCalc(weight, height);
-                });
-              },
-              child: const Text("Calcular")
-              ),
-            Text('$result')
-            ],
-          )
-        ),
+              const TextField(
+                keyboardType: TextInputType.number, 
+                textAlign: TextAlign.justify, 
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(), 
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12), 
+                  labelText: 'Peso (kg)')
+                ),
+              const TextField(
+                keyboardType: TextInputType.number, 
+                textAlign: TextAlign.justify, 
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(), 
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  labelText: 'Altura (m)')
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox()),
+                    Expanded(
+                      flex: 6,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: const MaterialStatePropertyAll<Color>(Colors.purple),
+                          shape: MaterialStateProperty.all
+                            (RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25), 
+                              side: const BorderSide(color: Colors.purple)
+                              )
+                            )
+                          ),
+                        onPressed: () {
+                          setState(() {
+                            result = Calculator.imcCalc(weight, height);
+                          });
+                        },
+                        child: const Text("CALCULAR", 
+                          style: TextStyle(color: Colors.black, 
+                            fontSize: 24, 
+                            fontWeight: FontWeight.w600, 
+                            letterSpacing: 4.0
+                            ),
+                          )
+                        ),
+                    ),
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox())
+                  ],
+                ),
+              Text('$result')
+              ],
+            )
+          ),
+      ),
       );
   }
 }
