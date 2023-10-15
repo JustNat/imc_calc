@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           onPressed: () {
                             setState(() {
-                              result = Calculator.imcCalc(double.tryParse(weight.text) ?? 0, double.tryParse(height.text) ?? 0);
+                              result = Calculator.imcCalc(double.tryParse(weight.text.trim()) ?? 0, double.tryParse(height.text.trim()) ?? 0);
                             });
                           },
                           child: const Text("CALCULAR", 
