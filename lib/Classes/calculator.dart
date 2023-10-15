@@ -3,15 +3,16 @@ import 'dart:math';
 class Calculator {
   Calculator._();
 
-  static double imcCalc(double weight, double height) {
+  static String imcCalc(double weight, double height) {
     if (weight <= 0 || height <= 0) {
-      return -1;
+      return 'Insira valores válidos';
     } else {
       try {
-        return weight / pow(height, 2);
-      } catch (e) {
-        return -1;
-      }
+        height = height / 100;
+        return (weight / pow(height, 2)).toStringAsFixed(2);
+    } catch (e) {
+        return '$e';
+    }
     }
   }
 }
