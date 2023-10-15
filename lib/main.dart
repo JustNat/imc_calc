@@ -33,8 +33,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // TODO : saber onde exatamente se obterá height and weight
   String result = '';
-  double? height = 0;
-  double? weight = 0;
+  TextEditingController height = TextEditingController();
+  TextEditingController weight = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                     border: OutlineInputBorder(), 
                     contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12), 
                     labelText: 'Peso (kg)'),
-                    onChanged: (value) => weight = double.tryParse(value)
+                    controller: weight,
                   ),
                     const SizedBox(height: 15),
                     TextField(
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                         border: OutlineInputBorder(), 
                         contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                         labelText: 'Altura (cm)'),
-                        onChanged: (value) => height = double.tryParse(value)
+                        controller: height,
                       ),
                   ],)),
                 Expanded(
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           onPressed: () {
                             setState(() {
-                              result = Calculator.imcCalc(weight ?? 0, height ?? 0);
+                              result = Calculator.imcCalc(double.tryParse(weight.text) ?? 0, double.tryParse(height.text) ?? 0);
                             });
                           },
                           child: const Text("CALCULAR", 
