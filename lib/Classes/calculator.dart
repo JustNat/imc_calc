@@ -5,7 +5,7 @@ class Calculator {
 
   static String imcCalc(double weight, double height) {
     if (weight <= 0 || height <= 0) {
-      return 'Insira valores válidos';
+      throw ArgumentError('Insira valores válidos');
     } else {
       try {
         height = height / 100;
@@ -18,7 +18,7 @@ class Calculator {
 
   static String imcResult(double imc) {
     if (imc <= 0) {
-      return '';
+      throw ArgumentError('IMC inválido');
     } else if (imc < 18.5) {
       return 'Baixo peso';
     } else if (imc >= 18.5 && imc <= 24.9) {
