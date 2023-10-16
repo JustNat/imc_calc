@@ -110,7 +110,12 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-              Text(result, style: const TextStyle(fontSize: 20))
+              Column(
+                children: [
+                  Text(result, style: const TextStyle(fontSize: 20)),
+                  Text(Calculator.imcResult(double.tryParse(result) ?? 0), style: const TextStyle(fontSize: 16)),
+                ],
+              )
               ],
             )
           ),
